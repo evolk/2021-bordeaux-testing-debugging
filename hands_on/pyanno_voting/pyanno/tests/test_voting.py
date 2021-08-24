@@ -1,4 +1,6 @@
 import numpy as np
+from numpy.testing import assert_allclose
+
 
 from pyanno import voting
 from pyanno.voting import MISSING_VALUE as MV
@@ -41,3 +43,12 @@ def test_majority_vote_empty_item():
     expected = [1, MV, 2]
     result = voting.majority_vote(annotations)
     assert result == expected
+    
+    
+def test_labels_frequency():
+    annotations = [[1, 1, 2], [-1, 1, 2]]
+    nlabels = 4
+    expected  =  np.array([0. , 0.6, 0.4, 0. ])
+    result = voting.labels_frequency(annotations, nlabels)
+    assert_allclose(result,expected)
+
