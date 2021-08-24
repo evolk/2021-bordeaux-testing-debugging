@@ -101,13 +101,13 @@ def labels_frequency(annotations, nclasses):
         their count over the number of total of observed (non-missing) elements
     """
     
-    flat_annots = [item for sublist in annots for item in sublist] 
+    flat_annots = [item for sublist in annotations for item in sublist] 
 
     clean_annots = [item for item in flat_annots if item!=-1]
 
-    freqs = np.zeros(nlabels)
+    freqs = np.zeros(nclasses)
 
     for num in clean_annots:
-        freqs[num] = freqs[num]+ (1/(nlabels+1))
+        freqs[num] = freqs[num]+ (1/(nclasses+1))
 
     return freqs
